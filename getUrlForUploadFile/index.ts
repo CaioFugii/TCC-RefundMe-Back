@@ -5,7 +5,7 @@ import { generateResponse } from "../shared/libs/responseHelpers";
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     try {
-        const blobService = azureStorage.createBlobService('DefaultEndpointsProtocol=https;AccountName=storageallinvestx;AccountKey=ZknKZF3V8lWk+M6+V2Q3KknpeVkxEquUqPHxf8sF0D2vZa/wjXusZPCRcXk5KAtRgqOAZ6ETEh1zOBh87LA1Qw==;EndpointSuffix=core.windows.net');
+        const blobService = azureStorage.createBlobService('****************');
         const blobName = req.params.file + Math.random()
 
 
