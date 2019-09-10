@@ -5,11 +5,11 @@ import { generateResponse } from "../shared/libs/responseHelpers";
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     try {
-        const blobService = azureStorage.createBlobService('****************');
+        const blobService = azureStorage.createBlobService(process.env.StorageConnectionString);
         const blobName = req.params.file + Math.random()
 
 
-        const res = blobService.generateSharedAccessSignature('stark-receipt',blobName , {
+        const res = blobService.generateSharedAccessSignature('receipt',blobName , {
             AccessPolicy: {
                 Permissions: "rwdl",
                 Expiry: getDate()
@@ -21,8 +21,8 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
             date.setHours((date).getHours() + 1);
             return date;
         }
-        const account = "storageallinvestx";
-        const containerName = 'stark-receipt';
+        const account = "apirefundme";
+        const containerName = 'receipt';
         
         const url = `https://${account}.blob.core.windows.net/${containerName}/${blobName}?` + res
 
